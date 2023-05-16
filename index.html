@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Solve Triangle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Solve Triangle</h2>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form id="triangleForm">
+                <div class="form-group">
+                    <label for="a">a:</label>
+                    <input type="number" id="a" name="a" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="b">b:</label>
+                    <input type="number" id="b" name="b" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="c">c:</label>
+                    <input type="number" id="c" name="c" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="A">A:</label>
+                    <input type="number" id="A" name="A" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="B">B:</label>
+                    <input type="number" id="B" name="B" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="C">C:</label>
+                    <input type="number" id="C" name="C" class="form-control">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">Results</div>
+                <div class="card-body">
+                    <pre id="output" class="text-center"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="triangle.js"></script>
+<script>
+function submitForm() {
+    let triangle = {};
+    for (let key of ['a', 'b', 'c', 'A', 'B', 'C']) {
+        let value = document.getElementById(key).value;
+        if (value) {
+            triangle[key] = parseFloat(value);
+        }
+    }
+    let result = solveTriangle(triangle);
+    let output = "";
+    for (let key in result) {
+        output += key + ": " + result[key].toFixed(3) + "\n";
+    }
+    document.getElementById('output').innerText = output;
+}
+</script>
+
+</body>
+</html>
